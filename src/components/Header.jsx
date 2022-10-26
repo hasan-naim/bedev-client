@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../assets/logo/logo.png";
 
 function Header() {
   return (
@@ -40,6 +41,7 @@ function Header() {
               </ul>
             </div>
             <Link to="/" className="btn btn-ghost normal-case text-xl">
+              <img src={Logo} className="mr-3" alt="logo" />
               BeDev
             </Link>
           </div>
