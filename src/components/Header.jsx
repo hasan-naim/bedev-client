@@ -86,6 +86,7 @@ function Header() {
                       class="w-10 h-10 rounded mr-3"
                       src={user?.photoURL}
                       alt="Medium avatar"
+                      title={user?.displayName && user.displayName}
                     />
                   ) : (
                     <svg
