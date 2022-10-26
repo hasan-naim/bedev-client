@@ -9,6 +9,7 @@ function Register() {
   const [photoUrl, setPhotoUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   console.log(email);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,9 +23,12 @@ function Register() {
           photoURL: photoUrl,
         })
           .then(() => {})
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            setError(err.message);
+          });
       })
       .catch((err) => {
+        setError(err.message);
         console.log(err);
       });
   };
@@ -113,6 +117,7 @@ function Register() {
             <button type="submit" className="btn btn-primary w-full">
               Submit
             </button>
+            {error && <p className="text-red-500 mt-2">Error: {error}</p>}
           </form>
         </div>
       </div>

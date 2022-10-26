@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 function LogIn() {
-  const { googleLogIn, logIn } = useContext(AuthContext);
+  const { googleLogIn, logIn, githubLogIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +16,10 @@ function LogIn() {
     logIn(email, password)
       .then((rslt) => {
         console.log(rslt.user);
+        form.reset();
       })
       .catch((err) => {
+        setError(err.message);
         console.log(err);
       });
   };
@@ -24,7 +27,16 @@ function LogIn() {
   const handleGoogleLogIn = () => {
     googleLogIn()
       .then(() => {})
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
+  const handleGithubLogIn = () => {
+    githubLogIn()
+      .then(() => {})
+      .catch((err) => {
+        setError(err.message);
+      });
   };
   return (
     <div className="mt-12">
@@ -80,6 +92,7 @@ function LogIn() {
             <button type="submit" className="btn btn-primary w-full">
               Submit
             </button>
+            {error && <p className="text-red-500 mt-2">Error: {error}</p>}
           </form>
           <h6 className="text-gray-400 text-lg font-semibold text-center my-3 w-full">
             or
@@ -90,7 +103,12 @@ function LogIn() {
           >
             Google
           </button>
-          <button className="btn btn-outline btn-active w-full">Github</button>
+          <button
+            onClick={handleGithubLogIn}
+            className="btn btn-outline btn-active w-full"
+          >
+            Github
+          </button>
         </div>
       </div>
     </div>
