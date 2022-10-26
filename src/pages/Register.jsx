@@ -1,16 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function LogIn() {
+function Register() {
   return (
     <div className="mt-12">
       <div className="container">
         <div className="bg-base-200 p-8 text-white w-full max-w-lg mx-auto rounded-lg shadow-lg">
           <form>
             <h3 className="text-gray-200 text-4xl font-semibold text-center mx-auto mb-4">
-              Log In
+              Register
             </h3>
-
+            <div class="mb-6">
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-300 dark:text-gray-300"
+              >
+                Your Name{" "}
+              </label>
+              <input
+                type="text"
+                id="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-300 dark:text-gray-300"
+              >
+                Your image Url
+              </label>
+              <input
+                type="text"
+                id="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Url"
+                required=""
+              />
+            </div>
             <div class="mb-6">
               <label
                 for="email"
@@ -45,9 +73,9 @@ function LogIn() {
                 for="remember"
                 class="ml-2 text-sm font-medium text-gray-300 dark:text-gray-300"
               >
-                New Here?{" "}
-                <Link to="/register" className="text-blue-500 hover:underline">
-                  Create an accout
+                Have an account?{" "}
+                <Link to="/login" className="text-blue-500 hover:underline">
+                  Log In
                 </Link>
               </label>
             </div>
@@ -66,4 +94,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default Register;
