@@ -1,9 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 function LogIn() {
-  const { googleLogIn } = useContext(AuthContext);
+  const { googleLogIn, logIn } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    logIn(email, password)
+      .then((rslt) => {
+        console.log(rslt.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleGoogleLogIn = () => {
     googleLogIn()
       .then(() => {})
@@ -13,7 +30,7 @@ function LogIn() {
     <div className="mt-12">
       <div className="container">
         <div className="bg-base-200 p-8 text-white w-full max-w-lg mx-auto rounded-lg shadow-lg">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h3 className="text-gray-200 text-4xl font-semibold text-center mx-auto mb-4">
               Log In
             </h3>
@@ -26,6 +43,7 @@ function LogIn() {
                 Your email
               </label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -41,6 +59,7 @@ function LogIn() {
                 Your password
               </label>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -58,7 +77,9 @@ function LogIn() {
                 </Link>
               </label>
             </div>
-            <button className="btn btn-primary w-full">Submit</button>
+            <button type="submit" className="btn btn-primary w-full">
+              Submit
+            </button>
           </form>
           <h6 className="text-gray-400 text-lg font-semibold text-center my-3 w-full">
             or

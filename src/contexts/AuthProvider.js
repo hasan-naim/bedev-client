@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -39,7 +40,11 @@ function AuthProvider({ children }) {
     return updateProfile(auth.currentUser, obj);
   };
 
-  const authInfo = { user, googleLogIn, createUser, updetUser };
+  const logIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const authInfo = { user, googleLogIn, createUser, updetUser, logIn };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

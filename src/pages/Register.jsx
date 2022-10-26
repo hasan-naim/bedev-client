@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 function Register() {
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updetUser } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  console.log(email);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,7 +17,7 @@ function Register() {
       .then((rslt) => {
         form.reset();
         console.log(rslt.user);
-        updateUser({
+        updetUser({
           displayName: name,
           photoURL: photoUrl,
         })
