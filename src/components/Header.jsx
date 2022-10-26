@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo/logo.png";
+import { AuthContext } from "../contexts/AuthProvider";
 
 function Header() {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="bg-base-200">
       <div className="container ">
@@ -59,9 +68,49 @@ function Header() {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link to={"/login"} className="btn">
-              Log In
-            </Link>
+            {user?.uid ? (
+              <>
+                <div className="relative">
+                  <div
+                    id="tooltip-jese"
+                    role="tooltip"
+                    class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-gray-200 bg-gray-600 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-600"
+                  >
+                    {/* {user?.displayName} */}
+                    Hasan Naim
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                  {user?.photoURL ? (
+                    <img
+                      data-tooltip-target="tooltip-jese"
+                      class="w-10 h-10 rounded mr-3"
+                      src={user?.photoURL}
+                      alt="Medium avatar"
+                    />
+                  ) : (
+                    <svg
+                      class="mr-3 bg-gray-600 rounded-full p-1 w-10 h-10 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  )}
+                </div>
+                <button onClick={handleLogOut} className="btn">
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <Link to={"/login"} className="btn">
+                Log In
+              </Link>
+            )}
           </div>
         </div>
       </div>
