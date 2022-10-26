@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 function Register() {
+  const { googleLogIn } = useContext(AuthContext);
+
+  const handleGoogleLogIn = () => {
+    googleLogIn()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="mt-12">
       <div className="container">
@@ -84,7 +92,10 @@ function Register() {
           <h6 className="text-gray-400 text-lg font-semibold text-center my-3 w-full">
             or
           </h6>
-          <button className="btn btn-outline btn-success w-full mb-3">
+          <button
+            onClick={handleGoogleLogIn}
+            className="btn btn-outline btn-success w-full mb-3"
+          >
             Google
           </button>
           <button className="btn btn-outline btn-active w-full">Github</button>
