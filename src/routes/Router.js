@@ -59,6 +59,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/purchase/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://web-dev-course-server.vercel.app/courses/${params.id}`
+          ),
         element: (
           <PrivetRoute>
             <Purchase></Purchase>
