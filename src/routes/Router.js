@@ -5,6 +5,7 @@ import MainCourse from "../components/MainCourse";
 import Blog from "../pages/Blog";
 import Courses from "../pages/Courses";
 import DetailsPage from "../pages/DetailsPage";
+import Error from "../pages/Error";
 import FAQ from "../pages/FAQ";
 import Home from "../pages/Home";
 import LogIn from "../pages/LogIn";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "*",
+        element: <Error></Error>,
       },
     ],
   },
