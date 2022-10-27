@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import CourseLayout from "../components/Layout/CourseLayout";
 import MainLayout from "../components/Layout/MainLayout";
 import MainCourse from "../components/MainCourse";
+import PrivetRoute from "../components/PrivetRoute";
 import Blog from "../pages/Blog";
 import Courses from "../pages/Courses";
 import DetailsPage from "../pages/DetailsPage";
@@ -9,6 +10,7 @@ import Error from "../pages/Error";
 import FAQ from "../pages/FAQ";
 import Home from "../pages/Home";
 import LogIn from "../pages/LogIn";
+import Purchase from "../pages/Purchase";
 import Register from "../pages/Register";
 
 const router = createBrowserRouter([
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/purchase/:id",
+        element: (
+          <PrivetRoute>
+            <Purchase></Purchase>
+          </PrivetRoute>
+        ),
       },
       {
         path: "*",

@@ -19,7 +19,7 @@ function DetailsPage() {
         <img className="w-full rounded-lg mb-12" src={data.img} alt="" />
         <p>{data.details}</p>
         <div className="mt-12 space-x-4 text-center">
-          <Link to={``} className="btn btn-primary">
+          <Link to={`/purchase/${data.id}`} className="btn btn-primary">
             Purchase
           </Link>
         </div>
