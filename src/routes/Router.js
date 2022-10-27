@@ -30,6 +30,10 @@ const router = createBrowserRouter([
           {
             path: "/courses/:id",
             element: <DetailsPage></DetailsPage>,
+            loader: ({ params }) =>
+              fetch(
+                `https://web-dev-course-server.vercel.app/courses/${params.id}`
+              ),
           },
         ],
       },
